@@ -422,6 +422,17 @@ bool DriverStation::IsEnabled() const {
 }
 
 /**
+ * Check if the robot is e-stopped.
+ *
+ * @return True if the robot is e-stopped
+ */
+bool DriverStation::IsEStopped() const {
+  HAL_ControlWord controlWord;
+  UpdateControlWord(false, controlWord);
+  return controlWord.eStop;
+}
+
+/**
  * Check if the robot is disabled.
  *
  * @return True if the robot is explicitly disabled or the DS is not connected
